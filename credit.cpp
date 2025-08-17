@@ -1,8 +1,18 @@
 #include<iostream>
+#include<fstream>
 using namespace std;
 
 string name,order;
 int amt;
+
+void transaction()
+{
+    cout<<"\n-----Transaction Process----";
+    cout<<"\nTransaction completed\n";
+    fstream custDB("customerDB.csv", ios::in | ios::out | ios::app);
+    custDB<<name<<","<<amt<<","<<order<<endl;
+    cout<<"\nCustomer will receive the statement at the end of the cycle\n";
+}
 
 bool validCard()
 {
@@ -70,5 +80,7 @@ int main()
     cout<<"\nOrder placed\n";
     cout<<"\nmoving to verification process\n";
     verification();
-
+    cout<<"\nMoving to transaction part\n";
+    transaction();
+    cout<<"\n-----Payment Process Completed-----\n";
 }
